@@ -1,0 +1,171 @@
+{% extends 'office-base.html' %}
+
+{% block title %}Office | Home{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Official : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+    </div>
+
+    <!--member registration section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Member Operations</span>
+                <p>
+                    In this section official can register Teacher, Student, Parent, Librarian and Other Official.
+                    In this section he also Search, Edit and Remove those member profile.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'office:office-registration' %}">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end member registration section-->
+
+    <!--schedule section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Create Schedules</span>
+                <p>
+                    In this section official can create Class Routine and Exam Routine.
+                    In this section he also Edit and Remove those schedule.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'office:schedule' %}">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end schedule section-->
+
+    <!--notice section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Publish Notice</span>
+                <p>
+                    In this section official can Publish Notice for student.
+                    In this section he also Edit and Remove those notice.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'office:notice' %}">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end notice section-->
+
+    <!--gallary section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Upload Gallary</span>
+                <p>
+                    In this section official can Upload Images and Videos.
+                    In this section he also Remove those Images and Videos.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'office:gallary' %}">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end gallary section-->
+
+    <!--class room manage section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Manage Classroom</span>
+                <p>
+                    In this section official can Manage Classroom.
+                    In this section he also Edit or Remove those Classroom.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end class room manage section-->
+
+    <!--class event calander section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Event Calander</span>
+                <p>
+                    In this section official can Manage Event.
+                    In this section he also Edit or Remove those Event.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end class room manage section-->
+
+    <!--payment section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Payment</span>
+                <p>
+                    In this section official can Manage Student Exam Fees.
+                    In this section he also Edit or Remove those Fees.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end payment section-->
+
+    <!--expenses section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Expenses</span>
+                <p>
+                    In this section official can Manage Expenses.
+                    In this section he also Edit or Remove those Expenses.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end expenses section-->
+
+    <!--school bus section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">School Bus</span>
+                <p>
+                    In this section official can Manage School Bus.
+                    In this section he also Edit or Remove those Bus.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end school bus section-->
+{% endblock %}

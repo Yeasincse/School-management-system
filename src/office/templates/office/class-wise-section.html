@@ -1,0 +1,45 @@
+{% extends 'office-base.html' %}
+
+{% block title %}Office | Section List{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Official : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+    </div>
+
+    <!--member search section-->
+    {% if sections %}
+        <div class="col s12 m12">
+            <h5>Total {{ count }} class found : </h5>
+        </div>
+
+        {% for section in sections %}
+            <div class="col s12 m12">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Section : {{ section.name | title }}</span>
+
+                        <p>
+                            School: {{ section.school.name | title }}
+                        </p>
+
+                        <p>
+                            Class: {{ section.classes.name | title }}
+                        </p>
+                    </div>
+
+                    <div class="card-action">
+                        <a href="{% url 'office:section-wise-student' classes=section.classes.name section=section.name %}">View Student</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h4>No member found!</h4>
+    {% endif %}
+    <!--end member search section-->
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

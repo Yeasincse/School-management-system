@@ -1,0 +1,92 @@
+{% extends 'office-base.html' %}
+
+{% block title %}Office | Member Detail{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Official : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+    </div>
+
+    <!--member registration section-->
+    <div class="col s12 m12">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                {% if viewable_user %}
+                    {% for member in viewable_user %}
+                        <span class="card-title">Member Detail ( {{ member.member_type | upper }} )</span>
+
+                        <div class="row">
+                            <div class="col s12 m7 l7"style="">
+                                <p>
+                                    <b>Username :</b> {{ member.username | title }}<br>
+                                </p>
+
+                                <p>
+                                    <b>Email :</b> {{ member.email }}<br>
+                                </p>
+
+                                <p>
+                                    <b>School :</b> {{ member.school | title }}<br>
+                                </p>
+
+                                <p>
+                                    <b>Type :</b> {{ member.member_type | title }}<br>
+                                </p>
+
+                                <p>
+                                    <b>Name :</b> {{ member.name }}<br>
+                                </p>
+
+                                {% ifequal member.member_type.name 'student' %}
+                                    <p>
+                                        <b>Class :</b> {{ member.classes.name | upper }}<br>
+                                    </p>
+
+                                    <p>
+                                        <b>Section :</b> {{ member.section.name | upper }}<br>
+                                    </p>
+                                {% endifequal %}
+
+                                <p>
+                                    <b>Phone :</b> {{ member.phone }}<br>
+                                </p>
+
+                                <p>
+                                    <b>Address :</b> {{ member.address }}<br>
+                                </p>
+
+                                <p>
+                                    <b>Post :</b> {{ member.account_type }}<br>
+                                </p>
+
+                                <p>
+                                    <b>Is Active :</b> {{ member.is_active }}<br>
+                                </p>
+                            </div>
+
+                            <div class="col s12 m4 offset-m1 l4 offset-l1">
+                                {% if member.photo %}
+                                    <img src="{{ member.photo.url }}" width="100%" alt="{{ member.username }}">
+                                {% else %}
+                                    <img src="/media/no-img.jpg" width="100%" alt="{{ member.username }}">
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h4>You have not any permission to see this profile!</h4>
+                {% endif %}
+            </div>
+
+            {% if viewable_user %}
+                {% for member in viewable_user %}
+                    <div class="card-action">
+                        <a href="{% url 'office:member-edit' pk=member.id %}">Edit This Member</a>
+                        <a href="{% url 'office:member-delete' pk=member.id %}">Delete This Member</a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <!--end member registration section-->
+{% endblock %}

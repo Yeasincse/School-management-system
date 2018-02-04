@@ -1,0 +1,113 @@
+{% extends 'student_base.html' %}
+
+{% block title %}Student  | Home{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Student : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+    </div>
+
+
+    <!--schedule section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title"> Schedules</span>
+                <p>
+                    In this section Student can known Class Routine and Exam Routine.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'student:schedule' %}">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end schedule section-->
+
+    <!--notice section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Publish Notice</span>
+                <p>
+                    In this section Student can know Publish Notice .
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end notice section-->
+
+    <!--gallary section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Upload Gallary</span>
+                <p>
+                    In this section Student can see Upload Images and Videos.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end gallary section-->
+
+
+    <!--class event calander section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Event Calander</span>
+                <p>
+                    In this section student can know Event.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end class room manage section-->
+
+    <!--payment section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Payment History</span>
+                <p>
+                    In this section student can Show Exam Fees.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end payment section-->
+
+    <!--school bus section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">School Bus</span>
+                <p>
+                    In this section student can known  School Bus Sections.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="#">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end school bus section-->
+{% endblock %}

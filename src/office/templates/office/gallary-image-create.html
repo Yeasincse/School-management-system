@@ -1,0 +1,62 @@
+{% extends 'office-base.html' %}
+
+{% block title %}Office | Image Upload{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Official : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+    </div>
+
+    <!--member registration section-->
+    <div class="col s12 m12">
+        <div class="card white darken-1">
+            <div class="card-content black-text">
+                <span class="card-title">Upload Image</span>
+
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div style="" class="input-field col s12 m12 l12">
+                                <i class="material-icons prefix">create</i>
+                                {{ gallary_image_form.description }}
+                                <label for="icon_prefix white-text">Description</label>
+                            </div>
+
+                            <div class="input-field col s12 m12 l12">
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Photo</span>
+                                        {{ gallary_image_form.image }}
+                                    </div>
+
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if gallary_image_form.non_field_errors %}
+                                {% for error in gallary_image_form.non_field_errors %}
+                                    <div class="col s12 m12 l12 center-align">
+                                        <p style="color: red; font-size: 20px;">
+                                            {{ error }}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <div class="col s12 m12 l12 center-align" style="margin-bottom: 20px;">
+                                <button class="btn waves-effect waves-light" type="submit" style="">Upload
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end member registration section-->
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'office-base.html' %}
+
+{% block title %}Office | Create Routine{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Official : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+    </div>
+
+    <!--member registration section-->
+    <div class="col s12 m12">
+        <div class="card white darken-1">
+            <div class="card-content black-text">
+                <span class="card-title">Create Routine</span>
+
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="col s12 m12 l12" style="margin-top: 20px;">
+                                Select Subject:
+                                {{ class_routine_form.subject }}
+                            </div>
+
+                            <div class="col s12 m12 l12" style="margin-top: 20px; margin-bottom: 20px;">
+                                Select Day:
+                                {{ class_routine_form.day }}
+                            </div>
+
+                            <div class="input-field col s12 m12 l12">
+                                <i class="material-icons prefix">equalizer</i>
+                                {{ class_routine_form.period }}
+                                <label for="icon_prefix white-text">Period No ( 1 or 2 or 3 etc)</label>
+                            </div>
+
+                            <div class="input-field col s12 m6 l6">
+                                <i class="material-icons prefix">access_time</i>
+                                {{ class_routine_form.start_hour }}
+                                <label for="icon_prefix white-text">Start Hour</label>
+                            </div>
+
+                            <div class="input-field col s12 m6 l6">
+                                <i class="material-icons prefix">access_time</i>
+                                {{ class_routine_form.end_hour }}
+                                <label for="icon_prefix white-text">End Hour</label>
+                            </div>
+
+                            {% if class_routine_form.non_field_errors %}
+                                {% for error in class_routine_form.non_field_errors %}
+                                    <div class="col s12 m12 l12 center-align">
+                                        <p style="color: red; font-size: 20px;">
+                                            {{ error }}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <div class="col s12 m12 l12 center-align" style="margin-bottom: 20px;">
+                                <button class="btn waves-effect waves-light" type="submit" style="">Create
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'office:office-registration' %}">Click To See Operations</a>
+            </div>
+        </div>
+    </div>
+    <!--end member registration section-->
+{% endblock %}
+
+{% block js %}
+    <script>
+        $('.timepicker').pickatime({
+            default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+            fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+            twelvehour: false, // Use AM/PM or 24-hour format
+            donetext: 'OK', // text for done-button
+            format: "HH:ii:SS",
+            cleartext: 'Clear', // text for clear-button
+            canceltext: 'Cancel', // Text for cancel-button
+            autoclose: false, // automatic close timepicker
+            ampmclickable: true, // make AM PM clickable
+            aftershow: function(){} //Function for after opening timepicker
+          });
+
+          $('.timepicker').on('change', function() {
+        let receivedVal = $(this).val();
+        $(this).val(receivedVal + ":00");
+    });
+    </script>
+{% endblock %}

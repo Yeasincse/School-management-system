@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration | Add Member</title>
+</head>
+<body>
+    Welcome admin, login as {{ request.user.username }}
+    <a href="{% url 'account:logout' %}">Logout</a><br><br>
+
+    <a href="{% url 'account:registration-member' %}">Add Member</a>
+</body>
+</html>

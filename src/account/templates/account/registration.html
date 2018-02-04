@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration | Official</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <style>
+        .container{
+            min-width: 100%;
+        }
+
+        .container > .row {
+            margin: 0;
+        }
+
+
+        .container > .row > .col {
+            padding: 0;
+        }
+
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6 l6" style="">
+                <div class="col s12 m10 offset-m1 l10 offset-l1 hoverable" style="">
+                    <form method="post" style="margin-top: 40px;" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {% if not current_user_school %}
+                            <div class="input-field col s12 m6 l6">
+                                {{ regForm.member_type }}
+                                <label>Select Member Type</label>
+                            </div>
+                        {% else %}
+                            <div class="input-field col s12 m6 l6">
+                                <select name="member_type" class="input-field initialized" id="id_member_type">
+                                    <option value="1">Office</option>
+                                </select>
+                                <label>Select Member Type</label>
+                            </div>
+                        {% endif %}
+
+                        {% if not current_user_school %}
+                            <div class="input-field col s12 m6 l6">
+                                {{ regForm.school }}
+                                <label>Select School</label>
+                            </div>
+                        {% else %}
+                            <div class="input-field col s12 m6 l6">
+                                <select name="school" class="input-field initialized" id="id_school">
+                                    <option value="{{ current_user_school.id }}">{{ current_user_school.name | title }}</option>
+                                </select>
+                                <label>Select School</label>
+                            </div>
+                        {% endif %}
+
+                        <div class="input-field col s12 m6 l6">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ regForm.username }}
+                            <label for="icon_prefix white-text">User Name</label>
+                        </div>
+
+                        <div class="input-field col s12 m6 l6">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ regForm.name }}
+                            <label for="icon_prefix white-text">Name</label>
+                        </div>
+
+                        <div class="input-field col s12 m6 l6">
+                            <i class="material-icons prefix">email</i>
+                            {{ regForm.email }}
+                            <label for="icon_prefix white-text">Email</label>
+                        </div>
+
+                        <div class="input-field col s12 m6 l6">
+                            <i class="material-icons prefix">phone</i>
+                            {{ regForm.phone }}
+                            <label for="icon_prefix white-text">Phone Number</label>
+                        </div>
+
+                        <div style="" class="input-field col s12 m12 l12">
+                            <i class="material-icons prefix">location_on</i>
+                            {{ regForm.address }}
+                            <label for="icon_prefix white-text">Address</label>
+                        </div>
+
+                        <div class="input-field col s12 m6 l6">
+                            <i class="material-icons prefix">assistant_photo</i>
+                            {{ regForm.account_type }}
+                            <label for="icon_prefix white-text">Post</label>
+                        </div>
+
+                        <div class="input-field col s12 m6 l6">
+                            <i class="material-icons prefix">lock</i>
+                            {{ regForm.password1 }}
+                            <label for="icon_prefix white-text">Password</label>
+                        </div>
+
+                        <div class="input-field col s12 m6 l6">
+                            <i class="material-icons prefix">refresh</i>
+                            {{ regForm.password2 }}
+                            <label for="icon_prefix white-text">Retype Password</label>
+                        </div>
+
+                        <div class="input-field col s12 m6 l6">
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Photo</span>
+                                    {{ regForm.photo }}
+                                </div>
+
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m12 l12 center-align" style="margin-bottom: 20px;">
+                            <button class="btn waves-effect waves-light" type="submit" style="">Registration
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l6 center-align" style="border-left: 1px solid #333; min-height: 670px;">
+                {% if regForm.non_field_errors %}
+                    <h4 style="color: red;">
+                        Register As Official
+                    </h4>
+                {% else %}
+                    <h4 style="">
+                        Register As Official
+                    </h4>
+                {% endif %}
+
+                {% if regForm.non_field_errors %}
+                    <p style="font-size: 250px; color: red;">
+                        &#128551;
+                    </p>
+                {% else %}
+                    <p style="font-size: 250px;">
+                        &#128525;
+                    </p>
+
+                    <h5>Nice To See You</h5>
+                {% endif %}
+
+                {% if regForm.non_field_errors %}
+                    {% for error in regForm.non_field_errors %}
+                        <div class="col s12 m12 l12 center-align">
+                            <h4 style="color: red;">Sorry ! Some Issue Found ,</h4>
+                            <p style="color: red; font-size: 20px;">
+                                {{ error }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>

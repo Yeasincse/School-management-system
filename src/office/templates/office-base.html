@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    {% block style %}
+
+    {% endblock %}
+
+    <style>
+        .container{
+            min-width: 100%;
+        }
+
+        .container > .row {
+            margin: 0;
+        }
+
+
+        .container > .row > .col {
+            padding: 0;
+        }
+
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m8 offset-m2 l8 offset-l2" style="border: 1px solid #333;">
+                <div class="navbar" style="border-bottom: 1px solid #333; height: 80px;">
+                    <div class="col s12 m12 l12" style="height: 100%;">
+                        <div class="navbar-menu col m12 l12 hide-on-med-and-down" style="height: 100%;">
+                            <!--main menu-->
+                            <div class="col s12 m12 l12 valign-wrapper" style="height: 40px; margin-top: 20px;">
+                                <nav class="white z-depth-0" style="">
+                                    <div class="nav-wrapper">
+                                        <ul class="left">
+                                            <!-- Dropdown Trigger -->
+                                            <li><a class="dropdown-button black-text" href="{% url 'office:index' %}" data-activates="">Home</a></li>
+                                            <li><a class="dropdown-button black-text" href="#!">Profile</a></li>
+                                            <li><a class="dropdown-button black-text" href="#!" data-activates="">{{ request.user.username | title }}</a></li>
+                                            <li><a class="dropdown-button black-text" href="{% url 'account:logout' %}">Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--end main menu-->
+                        </div>
+                    </div>
+                </div>
+
+                {% block body %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</body>
+</html>
+{% block js %}
+
+{% endblock %}

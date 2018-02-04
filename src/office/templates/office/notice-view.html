@@ -1,0 +1,49 @@
+{% extends 'office-base.html' %}
+
+{% block title %}Office | Notice View{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Official : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+    </div>
+
+    <!--member search section-->
+    {% if notices %}
+        <div class="col s12 m12">
+            <h5>Total {{ count }} class found : </h5>
+        </div>
+
+        {% for notice in notices %}
+            <div class="col s12 m12">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Notice ID : {{ notice.id }} ( {{ notice.classes.name }} )</span>
+
+                        <p>
+                            <b>Title:</b> {{ notice.title | title }}
+                        </p>
+
+                        <p>
+                            <b>Description:</b>
+                            <br>{{ notice.description }}
+                        </p>
+                    </div>
+
+                    <div class="card-action">
+                        {% ifequal notice.user request.user %}
+                            <a href="{% url 'office:notice-edit' pk=notice.id %}">Edit Notice</a>
+                            <a href="{% url 'office:notice-delete' pk=notice.id %}">Delete Notice</a>
+                        {% endifequal %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h4>No notice found!</h4>
+    {% endif %}
+    <!--end member search section-->
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

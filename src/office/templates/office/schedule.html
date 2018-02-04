@@ -1,0 +1,46 @@
+{% extends 'office-base.html' %}
+
+{% block title %}Office | Schedule{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Official : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+        <h5>Schedule</h5>
+    </div>
+
+    <!--class routine section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Class Routine</span>
+                <p>
+                    In this section official can create class routine.
+                    In this section he also Edit and Remove those routine.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'office:class-list' %}">Class List</a>
+            </div>
+        </div>
+    </div>
+    <!--end class routine section-->
+
+    <!--exam routine section-->
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Exam Routine</span>
+                <p>
+                    In this section official can create exam routine.
+                    In this section he also Edit and Remove those exam routine.
+                </p>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'office:class-list' %}">Class List</a>
+            </div>
+        </div>
+    </div>
+    <!--end exam routine section-->
+{% endblock %}

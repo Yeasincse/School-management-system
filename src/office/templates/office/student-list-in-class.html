@@ -1,0 +1,51 @@
+{% extends 'office-base.html' %}
+
+{% block title %}Office | Student List In Class{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Official : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+    </div>
+
+    <!--member search section-->
+    {% if students %}
+        <div class="col s12 m12">
+            <h5>Total {{ count }} student found : </h5>
+        </div>
+
+        {% for student in students %}
+            <div class="col s12 m12">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{ student.username | title }}</span>
+
+                        <p>
+                            School: {{ student.school.name | title }}
+                        </p>
+
+                        <p>
+                            Roll: {{ student.student.roll }}
+                        </p>
+
+                        <p>
+                            Section: {{ student.section.name | title }}
+                        </p>
+                    </div>
+
+                    <div class="card-action">
+                        <a href="{% url 'office:member-detail' pk=student.id %}">View Detail</a>
+                        <a href="{% url 'office:member-edit' pk=student.id %}">Edit Member</a>
+                        <a href="{% url 'office:member-delete' pk=student.id %}">Remove Member</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h4>No member found!</h4>
+    {% endif %}
+    <!--end member search section-->
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

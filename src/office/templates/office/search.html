@@ -1,0 +1,66 @@
+{% extends 'office-base.html' %}
+
+{% block title %}Office | Search{% endblock %}
+
+{% block body %}
+    <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <h5>Official : <span style="color: red;">{{ request.user.school | title }}</span></h5>
+    </div>
+
+
+    <div class="row">
+        <div class="col s12 m10 offset-m1 l10 offset-l1">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="input-field col s12 m12 l12">
+                    <i class="material-icons prefix">create</i>
+                    {{ search_form.search_text }}
+                    <label for="icon_prefix white-text">Enter Username / Email</label>
+                </div>
+
+                <div class="col s12 m12 l12 center-align" style="margin-bottom: 50px;">
+                    <button class="btn waves-effect waves-light" type="submit" style="">Search
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--member search section-->
+    {% if queries %}
+        <div class="col s12 m12">
+            <h5>Total {{ count }} member found : </h5>
+        </div>
+
+        {% for member in queries %}
+            <div class="col s12 m12">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{ member.username | title }} ( Email: {{ member.email }} )</span>
+
+                        <p>
+                            School: {{ member.school | title }}
+                        </p>
+
+                        <p>
+                            Class: {{ member.classes | title }}
+                        </p>
+                    </div>
+
+                    <div class="card-action">
+                        <a href="{% url 'office:member-detail' pk=member.id %}">View Detail</a>
+                        <a href="{% url 'office:member-edit' pk=member.id %}">Edit Member</a>
+                        <a href="{% url 'office:member-delete' pk=member.id %}">Remove Member</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <!--end member search section-->
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
